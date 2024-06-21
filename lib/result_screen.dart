@@ -5,7 +5,9 @@ import 'package:quiz_app/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
   final List<String> choosenAnswers;
-  const ResultScreen({super.key, required this.choosenAnswers});
+  final VoidCallback onRestart;
+  const ResultScreen(
+      {super.key, required this.choosenAnswers, required this.onRestart});
 
   List<Map<String, Object>> getSummaryList() {
     final List<Map<String, Object>> summary = [];
@@ -41,8 +43,37 @@ class ResultScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                "You answered $numCorrectQuestion out of $numTotalQuestion questions correctly"),
-            SizedBox(
+              textAlign: TextAlign.center,
+              "You answered $numCorrectQuestion out of $numTotalQuestion questions correctly",
+              style: TextStyle(fontSize: 20, color: Colors.amber),
+            ),
+
+            // Text.rich(
+            //   TextSpan(
+            //     text: "You answered ",
+            //     children: <InlineSpan>[
+            //       TextSpan(
+            //         text: "$numCorrectQuestion",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           color:
+            //               numCorrectQuestion >= 3 ? Colors.green : Colors.red,
+            //         ),
+            //       ),
+            //       TextSpan(text: " out of "),
+            //       TextSpan(text: "$numTotalQuestion ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           color:
+            //               numCorrectQuestion >= 3 ? Colors.green : Colors.red,
+            //         ),
+            //       ),
+            //       TextSpan(text: "questions correctly"),
+            //     ],
+            //   ),
+            // ),
+
+            const SizedBox(
               height: 30,
             ),
             // Container(
@@ -64,13 +95,21 @@ class ResultScreen extends StatelessWidget {
                   summaryData, /*SummaryData variable has created below the build method*/
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            TextButton.icon(
-              onPressed: () {},
-              icon: Icon(Icons.restart_alt),
-              label: Text("Restart Quiz"),
+            OutlinedButton.icon(
+              onPressed: () {
+                onRestart();
+              },
+              icon: const Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ),
+              label: const Text(
+                "Restart Quiz",
+                style: TextStyle(fontSize: 14, color: Colors.white),
+              ),
             ),
           ],
         ),

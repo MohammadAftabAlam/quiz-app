@@ -1,4 +1,4 @@
-#Wed Jun 19 18:29:32 IST 2024
+#Fri Jun 21 19:13:47 IST 2024
 base.0=D\:\\UdemyFlutterCourse\\quiz_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
